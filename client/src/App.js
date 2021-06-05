@@ -19,19 +19,22 @@ import CreateBooking from "./components/createBooking/createBooking";
 import EditBooking from "./components/cancelBooking/editBooking";
 import CancelBooking from "./components/cancelBooking/cancelBooking";
 import Refund from "./components/cancelBooking/refund";
+import Default from "./components/Default";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+  // <Route path="*/:id" component={Navigation} />
 
   render() {
     return (
       <Router>
         <div className="App container">
-          <Route path="*/:id" component={Navigation} />
+          {/* paste here */}
           <Switch>
+            <Route path="/" exact component={Default} />
             <Route path="/login" exact component={Login} />
 
             <Route path="/signup" exact component={SignUp} />
