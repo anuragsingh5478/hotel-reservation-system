@@ -1,0 +1,10 @@
+.my-container {
+  background-image: url("./img/bg3.jpg");
+  background-size: cover;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

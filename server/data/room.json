@@ -1,0 +1,5 @@
+{
+    "processing_cost": 50,
+    "cost_per_room_per_day": 500,
+    "number_of_room": 20
+}
