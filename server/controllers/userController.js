@@ -1,53 +1,42 @@
-const User = require("../models/userModel");
+const UserAuth = require("../models/userAuthenticationModel");
 
 exports.user_list = function (req, res) {
-  User.find((err, users) => {
+  UserAuth.find((err, users) => {
     if (err) console.log(err);
     res.json(users);
   });
 };
 
 exports.user_details = function (req, res) {
-  let userId = req.params.userId;
-  User.findById(userId)
+  let userId = req.user_id;
+  UserAuth.findById(userId)
     .then((user) => {
-      res.json(user);
+      let userData = removeSensitiveInfo(user);
+      res.json({ msg: "success", userData: userData });
     })
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
-exports.create_user = function (req, res) {
-  const userDetails = req.body;
-
-  let newUser = new User({
-    _id: Object(userDetails._id),
-    name: userDetails.name,
-    phone: userDetails.phone,
-    gender: userDetails.gender,
-  });
-
-  newUser
-    .save()
-    .then((user) => {
-      res.json({ msg: "success", user_id: user._id });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 exports.edit_user = function (req, res) {
-  //console.log("in edit user");
-  let userId = req.params.userId;
+  let userId = req.user_id;
   let userDetails = req.body;
-  User.findById(userId).then((user) => {
+  UserAuth.findById(userId).then((user) => {
     user.name = userDetails.name;
-    user.phone = userDetails.phone;
     user.gender = userDetails.gender;
 
     user
       .save()
-      .then(() => res.json({ msg: "User updated!" }))
+      .then(() => res.json({ msg: "success" }))
       .catch((err) => res.status(400).json({ msg: "Error: " + err }));
   });
 };
+
+// Utillity functions
+function removeSensitiveInfo(data) {
+  const userData = {
+    name: data.name,
+    email: data.email,
+    gender: data.gender,
+  };
+  return userData;
+}

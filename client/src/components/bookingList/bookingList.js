@@ -18,32 +18,31 @@ function BookingDetail(props) {
       <td>{props.cost}</td>
       <td>
         <button className="btn btn-warning" style={{ margin: "0px 5px" }}>
-          <Link to={"/home/cancel/" + props.user_id + "/" + props.booking_id}>
+          <Link to={"/user/booking/cancel/" + props.booking_id}>
             Full cancellation
           </Link>
         </button>
-        <button className="btn btn-warning">
+        {/* <button className="btn btn-warning">
           <Link
-            to={"/home/editbooking/" + props.user_id + "/" + props.booking_id}
+            to={"/user/editbooking/" + props.user_id + "/" + props.booking_id}
           >
             Partial cancellation
           </Link>
-        </button>
+        </button> */}
       </td>
     </tr>
   );
 }
-
 export default class BookingList extends Component {
   constructor(props) {
     super(props);
     this.state = { bookings: [] };
   }
   componentDidMount() {
-    var url =
-      "http://localhost:5000/booking/user/" + this.props.match.params.id;
-    axios.get(url).then((res) => {
-      this.setState({ bookings: res.data });
+    var url = "http://localhost:5000/booking/userBookingsList";
+    axios.get(url, { headers: { token: this.props.token } }).then((res) => {
+      this.setState({ bookings: res.data.allBookings });
+      console.log(res.data);
     });
   }
   showBooking() {
@@ -57,7 +56,6 @@ export default class BookingList extends Component {
           number_of_days={booking.number_of_days}
           number_of_rooms={booking.number_of_rooms}
           cost={booking.cost}
-          user_id={this.props.match.params.id}
           key={booking._id}
         ></BookingDetail>
       );

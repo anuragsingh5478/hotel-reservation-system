@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 export const Item = () => {
   let history = useHistory();
@@ -53,8 +53,7 @@ export default class CancelBooking extends Component {
     e.preventDefault();
 
     const newBooking = {
-      _id: this.props.match.params.bookingid,
-      user_id: this.props.match.params.id,
+      _id: this.props.match.params.id,
       booking_date: new Date(),
       checkin_date: this.state.checkin_date,
       checkout_date: this.state.checkout_date,
@@ -64,23 +63,19 @@ export default class CancelBooking extends Component {
     console.log(newBooking);
 
     axios
-      .post("http://localhost:5000/booking/cancel", newBooking)
+      .post("http://localhost:5000/booking/cancel", newBooking, {
+        headers: { token: this.props.token },
+      })
       .then((res) => console.log(res.data));
 
-    window.location =
-      "/home/refund/" +
-      this.props.match.params.id +
-      "/" +
-      this.props.match.params.bookingid;
+    window.location = "/user/booking/refund/" + this.props.match.params.id;
   }
 
   componentDidMount() {
-    var url =
-      "http://localhost:5000/booking/user/bookinginfo/" +
-      this.props.match.params.bookingid;
-    // console.log("url" + url);
+    let bookingId = this.props.match.params.id;
+    var url = "http://localhost:5000/booking/bookinginfo/" + bookingId;
     axios
-      .get(url)
+      .get(url, { headers: { token: this.props.token } })
       .then((res) => {
         this.setState({
           checkin_date: new Date(res.data.checkin_date),

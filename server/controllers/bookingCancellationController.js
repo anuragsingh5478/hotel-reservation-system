@@ -47,7 +47,7 @@ exports.partialCancellation = function (req, res) {
       .save()
       .then(() => {
         console.log("partial cancellation done");
-        res.json({ msg: "done" });
+        res.json({ msg: "success" });
       })
       .catch(() => {
         console.log("err");
@@ -75,7 +75,7 @@ exports.fullCancellation = function (req, res) {
       .save()
       .then(() => {
         console.log("full cancellation done");
-        res.json({ msg: "done" });
+        res.json({ msg: "success" });
       })
       .catch(() => {
         console.log("err");

@@ -17,7 +17,7 @@ function UserDetails(props) {
     <div className="bg-light text-dark text-center h4 pb-100 profile-card">
       <img
         src={profilepic}
-        class="img-rounded"
+        className="img-rounded"
         width="100px"
         height="100px"
       ></img>
@@ -38,15 +38,12 @@ export default class Profile extends react.Component {
   constructor(props) {
     super(props);
     this.state = { user: {} };
-    console.log("constructor");
-    console.log(props);
   }
   componentDidMount() {
-    var url = "http://localhost:5000/user/" + this.props.match.params.id;
+    var url = "http://localhost:5000/user/info";
     //console.log(url);
-    axios.get(url).then((res) => {
-      this.setState({ user: res.data });
-      //console.log(res.data);
+    axios.get(url, { headers: { token: this.props.token } }).then((res) => {
+      this.setState({ user: res.data.userData });
     });
   }
   showUser() {
@@ -61,16 +58,11 @@ export default class Profile extends react.Component {
     );
   }
   render() {
-    console.log("render");
-    console.log(this.props.match.params.id);
     return (
       <div className="card text-white profile-container">
         <div className="card-header ">
           <div className="font-weight-bold h1 text-dark">My Profile</div>
-          <Link
-            to={"/home/editprofile/" + this.props.match.params.id}
-            className="text-info"
-          >
+          <Link to={"/user/editprofile/"} className="text-info">
             Edit Profile
           </Link>
         </div>

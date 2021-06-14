@@ -6,21 +6,18 @@ var roomInfo = JSON.parse(rawdata);
 
 exports.allBookingList = function (req, res) {
   Booking.find((err, bookings) => {
-    res.json(bookings);
+    res.json({ msg: "success", allBookings: bookings });
   });
 };
 
 exports.getUsersBookingList = function (req, res) {
-  var userId = req.params.id;
-  //console.log(userId);
+  var userId = req.user_id;
   Booking.find({ user_id: userId, status: "active" }).then((bookings) => {
-    res.json(bookings);
-    //console.log(bookings);
+    res.json({ msg: "success", allBookings: bookings });
   });
 };
 
 exports.getBookingInfo = function (req, res) {
-  // console.log("in bookinginfo");
   var bookingId = req.params.bookingid;
 
   Booking.findById(bookingId)
@@ -29,12 +26,13 @@ exports.getBookingInfo = function (req, res) {
       console.log(err);
     });
 };
+
 // create a new booking
 // Note - date format mm/dd/yyyy in string
 exports.createBooking = function (req, res) {
   var bookingDetails = req.body;
   let newBooking = new Booking({
-    user_id: bookingDetails.user_id,
+    user_id: req.user_id, //bookingDetails.user_id
     booking_date: new Date(bookingDetails.booking_date),
     checkin_date: new Date(bookingDetails.checkin_date),
     checkout_date: new Date(bookingDetails.checkout_date),
@@ -56,14 +54,13 @@ exports.createBooking = function (req, res) {
 
   newBooking.save().then(
     (booking) => {
-      console.log(booking);
+      console.log("booking saved");
     },
     (err) => {
       console.log("error" + err);
     }
   );
-
-  res.send(`booking saved`);
+  res.json({ msg: "success" });
 };
 
 //calc number of days

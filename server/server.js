@@ -1,32 +1,39 @@
 const express = require("express");
 const app = express();
-//cross platfrom
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const cors = require("cors");
-app.use(cors());
-//to make post request
-const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false })); // for urlencoded
-app.use(bodyParser.json()); // for json
+
+dotenv.config();
+
 //server port
 const port = process.env.port | 5000;
-//database
-const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/hotelReservationSystem", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
-  console.log("db connected");
-});
-//route
+
+// Import Routes
 const userRouter = require("./routers/userRouter");
 const bookingRouter = require("./routers/bookingRouter");
 const userAuthRouter = require("./routers/userAuthRouter");
+
+//database
+mongoose
+  .connect(process.env.DB_LOCAL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
+  .then(() => console.log("DB connected"))
+  .catch(() => console.log("DB not connected"));
+
+// middlewares
+app.use(express.json());
+app.use(cors());
+
+// routes
+
 app.use("/user", userRouter);
 app.use("/booking", bookingRouter);
-app.use("/userauth", userAuthRouter);
+app.use("/auth", userAuthRouter);
 
 app.listen(port, () => {
   console.log(`server started at port ${port}`);

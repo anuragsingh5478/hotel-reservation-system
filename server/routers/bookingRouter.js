@@ -4,16 +4,34 @@ const router = express.Router();
 var bookingController = require("../controllers/bookingController");
 var bookingCancellationController = require("../controllers/bookingCancellationController");
 
-router.get("/", bookingController.allBookingList);
+const verifyRoute = require("./verifyRoute");
 
-router.get("/user/:id", bookingController.getUsersBookingList);
+router.get("/allBookingsList", verifyRoute, bookingController.allBookingList);
 
-router.get("/user/bookinginfo/:bookingid", bookingController.getBookingInfo);
+router.get(
+  "/userBookingsList",
+  verifyRoute,
+  bookingController.getUsersBookingList
+);
 
-router.post("/create", bookingController.createBooking);
+router.get(
+  "/bookinginfo/:bookingid",
+  verifyRoute,
+  bookingController.getBookingInfo
+);
 
-router.post("/edit", bookingCancellationController.partialCancellation);
+router.post("/create", verifyRoute, bookingController.createBooking);
 
-router.post("/cancel", bookingCancellationController.fullCancellation);
+router.post(
+  "/edit",
+  verifyRoute,
+  bookingCancellationController.partialCancellation
+);
+
+router.post(
+  "/cancel",
+  verifyRoute,
+  bookingCancellationController.fullCancellation
+);
 
 module.exports = router;

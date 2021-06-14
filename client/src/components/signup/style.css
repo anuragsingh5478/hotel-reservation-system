@@ -22,3 +22,47 @@ form {
   padding: 2rem 4rem;
   border-radius: 15px;
 }
+
+/* new css */
+.authentication {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-container {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 50px;
+}
+.header {
+  font-size: 1.5rem;
+  text-align: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.auth-container > form > div > input {
+  width: 400px;
+  margin: 10px 0px;
+  padding: 5px;
+  font-size: 1rem;
+}
+.auth-container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.error-msg {
+  font-size: 0.8rem;
+  color: tomato;
+}
+.login-register {
+  text-align: center;
+}
+.submit-button {
+  background-color: slateblue;
+  color: white;
+}

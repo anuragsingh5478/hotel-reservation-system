@@ -32,18 +32,16 @@ export default class EditProfile extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const user = {
-      _id: this.props.match.params.id,
       name: this.state.name,
-      phone: this.state.phone,
       gender: this.state.gender,
     };
-    var url = "http://localhost:5000/user/edit/" + this.props.match.params.id;
+    var url = "http://localhost:5000/user/edit/";
     axios
 
-      .put(url, user)
+      .put(url, user, { headers: { token: this.props.token } })
       .then((res) => {
         if (res.data.msg == "success") {
-          this.setState({ message: res.data.msg, id: res.data.user_id });
+          this.setState({ message: res.data.msg });
         } else {
           this.setState({ message: res.data.msg });
         }
@@ -54,14 +52,13 @@ export default class EditProfile extends React.Component {
   }
 
   componentDidMount() {
-    var url = "http://localhost:5000/user/" + this.props.match.params.id;
+    var url = "http://localhost:5000/user/info";
     console.log(url);
-    axios.get(url).then((res) => {
-      console.log(res.data);
+    axios.get(url, { headers: { token: this.props.token } }).then((res) => {
       this.setState({
-        name: res.data.name,
-        phone: res.data.phone,
-        gender: res.data.gender,
+        name: res.data.userData.name,
+        email: res.data.userData.email,
+        gender: res.data.userData.gender,
       });
     });
   }
@@ -86,13 +83,13 @@ export default class EditProfile extends React.Component {
             </div>
             <div className="form-group">
               <label>
-                Phone:
+                Email:
                 <br />
                 <input
-                  name="phone"
+                  name="email"
                   type="text"
-                  value={this.state.phone}
-                  onChange={this.handleChangedPhone}
+                  value={this.state.email}
+                  disabled
                 />
               </label>
             </div>
@@ -116,14 +113,8 @@ export default class EditProfile extends React.Component {
               />
             </div>
             {this.state.message}
-            {this.state.message == "User updated!" ? (
-              <Redirect
-                to={"/home/profile/" + this.props.match.params.id}
-              ></Redirect>
-            ) : (
-              <Redirect
-                to={"/home/editprofile/" + this.props.match.params.id}
-              ></Redirect>
+            {this.state.message == "success" && (
+              <Redirect to={"/user/profile/"}></Redirect>
             )}
           </form>
         </div>

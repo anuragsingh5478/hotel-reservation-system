@@ -3,12 +3,12 @@ const router = express.Router();
 
 var userController = require("../controllers/userController");
 
-router.get("/list", userController.user_list);
+const verifyRoute = require("./verifyRoute");
 
-router.get("/:userId", userController.user_details);
+router.get("/list", verifyRoute, userController.user_list);
 
-router.post("/create", userController.create_user);
+router.get("/info", verifyRoute, userController.user_details);
 
-router.put("/edit/:userId", userController.edit_user);
+router.put("/edit", verifyRoute, userController.edit_user);
 
 module.exports = router;

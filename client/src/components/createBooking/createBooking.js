@@ -3,6 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
+import { Redirect } from "react-router";
 
 export default class CreateExercise extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class CreateExercise extends Component {
       checkin_date: new Date(),
       checkout_date: new Date(),
       number_of_rooms: 0,
+      msg: "",
     };
   }
 
@@ -42,7 +44,6 @@ export default class CreateExercise extends Component {
     e.preventDefault();
 
     const newBooking = {
-      user_id: this.props.match.params.id,
       booking_date: new Date(),
       checkin_date: this.state.checkin_date,
       checkout_date: this.state.checkout_date,
@@ -50,12 +51,13 @@ export default class CreateExercise extends Component {
     };
 
     console.log(newBooking);
-
     axios
-      .post("http://localhost:5000/booking/create", newBooking)
-      .then((res) => console.log(res.data));
+      .post("http://localhost:5000/booking/create", newBooking, {
+        headers: { token: this.props.token },
+      })
+      .then((res) => this.setState({ msg: res.data.msg }));
 
-    window.location = "/home/bookinglist/" + this.props.match.params.id;
+    // window.location = "/home/bookinglist/" + this.props.match.params.id;
   }
 
   render() {
@@ -102,6 +104,7 @@ export default class CreateExercise extends Component {
             </div>
           </form>
         </div>
+        {this.state.msg === "success" && <Redirect to="/user/bookinglist" />}
       </div>
     );
   }

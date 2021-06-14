@@ -1,11 +1,4 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
 import "./App.css";
 import Homepage from "./components/homepage/homepage";
 import Login from "./components/login/login";
@@ -21,60 +14,129 @@ import CancelBooking from "./components/cancelBooking/cancelBooking";
 import Refund from "./components/cancelBooking/refund";
 import Default from "./components/Default";
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  // <Route path="*/:id" component={Navigation} />
+import useToken from "./useToken";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
-  render() {
+export default function App() {
+  const { token, setToken, logout } = useToken();
+  if (!token) {
     return (
       <Router>
-        <div className="App container">
-          {/* paste here */}
+        <div className="App">
           <Switch>
-            <Route path="/" exact component={Default} />
-            <Route path="/login" exact component={Login} />
-
-            <Route path="/signup" exact component={SignUp} />
-
-            <Route path="/setprofile/:id" exact component={NewProfile} />
-
-            <Route path="/home/:id" exact component={Homepage} />
-
-            <Route path="/home/profile/:id" exact component={Profile} />
-
-            <Route path="/home/editprofile/:id" exact component={EditProfile} />
-
-            <Route path="/home/bookinglist/:id" exact component={BookingList} />
-
-            <Route
-              path="/home/editbooking/:id/:bookingid"
-              exact
-              component={EditBooking}
-            />
-
-            <Route
-              path="/home/cancel/:id/:bookingid"
-              exact
-              component={CancelBooking}
-            />
-
-            <Route
-              path="/home/refund/:id/:bookingid"
-              exact
-              component={Refund}
-            />
-
-            <Route
-              path="/home/booking/create/:id"
-              exact
-              component={CreateBooking}
-            />
+            <Route path="/login">
+              <Login setToken={setToken} />
+            </Route>
+            <Route path="/signup">
+              <SignUp setToken={setToken} />
+            </Route>
+            <Redirect to="/login" />
           </Switch>
         </div>
       </Router>
     );
   }
+
+  // if user is authenicated
+  return (
+    <Router>
+      <div className="App">
+        <Navigation logout={logout} />
+        <Switch>
+          <Route path="/" exact>
+            <Homepage token={token} />
+          </Route>
+          <Route path="/user/profile">
+            <Profile token={token} />
+          </Route>
+          <Route path="/user/editprofile">
+            <EditProfile token={token} />
+          </Route>
+          <Route path="/user/bookinglist">
+            <BookingList token={token} />
+          </Route>
+          <Route path="/user/booking/create">
+            <CreateBooking token={token} />
+          </Route>
+          <Route
+            path="/user/booking/cancel/:id"
+            render={({ location, match }) => (
+              <CancelBooking token={token} match={match} />
+            )}
+          ></Route>
+          <Route
+            path="/user/booking/refund/:id"
+            render={({ location, match }) => (
+              <Refund token={token} match={match} />
+            )}
+          ></Route>
+
+          <Redirect to="/" />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
+
+// export default class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {};
+//   }
+
+//   render() {
+//     return (
+//       <Router>
+//         <div className="App container">
+//           <Route path="*/:id" component={Navigation} />
+
+//           <Switch>
+//             <Route path="/" exact component={Default} />
+//             <Route path="/login" exact component={Login} />
+
+//             <Route path="/signup" exact component={SignUp} />
+
+//             <Route path="/setprofile/:id" exact component={NewProfile} />
+
+//             <Route path="/home/:id" exact component={Homepage} />
+
+//             <Route path="/home/profile/:id" exact component={Profile} />
+
+//             <Route path="/home/editprofile/:id" exact component={EditProfile} />
+
+//             <Route path="/home/bookinglist/:id" exact component={BookingList} />
+
+//             <Route
+//               path="/home/editbooking/:id/:bookingid"
+//               exact
+//               component={EditBooking}
+//             />
+
+//             <Route
+//               path="/home/cancel/:id/:bookingid"
+//               exact
+//               component={CancelBooking}
+//             />
+
+//             <Route
+//               path="/home/refund/:id/:bookingid"
+//               exact
+//               component={Refund}
+//             />
+
+//             <Route
+//               path="/home/booking/create/:id"
+//               exact
+//               component={CreateBooking}
+//             />
+//           </Switch>
+//         </div>
+//       </Router>
+//     );
+//   }
+// }

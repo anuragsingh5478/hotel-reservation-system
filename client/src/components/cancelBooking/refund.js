@@ -32,10 +32,11 @@ export default class Refund extends Component {
 
   componentDidMount() {
     var url =
-      "http://localhost:5000/booking/user/bookinginfo/" +
-      this.props.match.params.bookingid;
+      "http://localhost:5000/booking/bookinginfo/" + this.props.match.params.id;
     axios
-      .get(url)
+      .get(url, {
+        headers: { token: this.props.token },
+      })
       .then((res) => {
         this.setState({
           refund: res.data.refund,
