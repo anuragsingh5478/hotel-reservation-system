@@ -22,13 +22,11 @@ function BookingDetail(props) {
             Full cancellation
           </Link>
         </button>
-        {/* <button className="btn btn-warning">
-          <Link
-            to={"/user/editbooking/" + props.user_id + "/" + props.booking_id}
-          >
+        <button className="btn btn-warning">
+          <Link to={"/user/booking/edit/" + props.booking_id}>
             Partial cancellation
           </Link>
-        </button> */}
+        </button>
       </td>
     </tr>
   );

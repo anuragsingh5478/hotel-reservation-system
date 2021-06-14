@@ -70,6 +70,12 @@ export default function App() {
             )}
           ></Route>
           <Route
+            path="/user/booking/edit/:id"
+            render={({ location, match }) => (
+              <EditBooking token={token} match={match} />
+            )}
+          ></Route>
+          <Route
             path="/user/booking/refund/:id"
             render={({ location, match }) => (
               <Refund token={token} match={match} />

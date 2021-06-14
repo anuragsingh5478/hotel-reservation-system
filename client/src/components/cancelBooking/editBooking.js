@@ -52,9 +52,8 @@ export default class EditBooking extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const newBooking = {
-      _id: this.props.match.params.bookingid,
-      user_id: this.props.match.params.id,
+    const updatedBooking = {
+      _id: this.props.match.params.id,
       booking_date: new Date(),
       checkin_date: this.state.checkin_date,
       checkout_date: this.state.checkout_date,
@@ -62,23 +61,19 @@ export default class EditBooking extends Component {
     };
 
     axios
-      .post("http://localhost:5000/booking/edit", newBooking)
+      .post("http://localhost:5000/booking/edit", updatedBooking, {
+        headers: { token: this.props.token },
+      })
       .then((res) => console.log(res.data));
 
-    window.location =
-      "/home/refund/" +
-      this.props.match.params.id +
-      "/" +
-      this.props.match.params.bookingid;
+    window.location = "/user/booking/refund/" + this.props.match.params.id;
   }
 
   componentDidMount() {
     var url =
-      "http://localhost:5000/booking/user/bookinginfo/" +
-      this.props.match.params.bookingid;
-    // console.log("url" + url);
+      "http://localhost:5000/booking/bookinginfo/" + this.props.match.params.id;
     axios
-      .get(url)
+      .get(url, { headers: { token: this.props.token } })
       .then((res) => {
         this.setState({
           checkin_date: new Date(res.data.checkin_date),
