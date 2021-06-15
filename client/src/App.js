@@ -62,6 +62,14 @@ export default function App() {
           <Route path="/user/booking/create" exact>
             <CreateBooking token={token} />
           </Route>
+
+          <Route
+            path="/user/booking/refund/:id"
+            exact
+            render={({ location, match }) => (
+              <Refund token={token} match={match} />
+            )}
+          ></Route>
           <Route
             path="/user/booking/cancel/:id"
             exact
@@ -74,13 +82,6 @@ export default function App() {
             exact
             render={({ location, match }) => (
               <EditBooking token={token} match={match} />
-            )}
-          ></Route>
-          <Route
-            path="/user/booking/refund/:id"
-            exact
-            render={({ location, match }) => (
-              <Refund token={token} match={match} />
             )}
           ></Route>
 
