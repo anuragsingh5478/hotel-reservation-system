@@ -52,9 +52,13 @@ export default class CreateExercise extends Component {
 
     console.log(newBooking);
     axios
-      .post("http://localhost:5000/booking/create", newBooking, {
-        headers: { token: this.props.token },
-      })
+      .post(
+        "https://hotel-reservation-system-1.herokuapp.com/booking/create",
+        newBooking,
+        {
+          headers: { token: this.props.token },
+        }
+      )
       .then((res) => this.setState({ msg: res.data.msg }));
 
     // window.location = "/home/bookinglist/" + this.props.match.params.id;
