@@ -26,12 +26,10 @@ export default class Homepage extends react.Component {
     this.state = { user: {} };
   }
   componentDidMount() {
-    console.log(this.props.token);
     var url = "https://hotel-reservation-system-1.herokuapp.com/user/info";
     //console.log(url);
     axios.get(url, { headers: { token: this.props.token } }).then((res) => {
       this.setState({ user: res.data.userData });
-      console.log(res.data);
     });
   }
   showUser() {

@@ -14,16 +14,12 @@ export default class EditProfile extends React.Component {
     this.state = { name: "", phone: "", gender: "", message: "", id: "" };
 
     this.handleChangedName = this.handleChangedName.bind(this);
-    this.handleChangedPhone = this.handleChangedPhone.bind(this);
     this.handleChangedGender = this.handleChangedGender.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChangedName(event) {
     this.setState({ name: event.target.value });
-  }
-  handleChangedPhone(event) {
-    this.setState({ phone: event.target.value });
   }
   handleChangedGender(event) {
     this.setState({ gender: event.target.value });
