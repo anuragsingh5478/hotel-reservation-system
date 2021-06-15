@@ -4,7 +4,6 @@ import Homepage from "./components/homepage/homepage";
 import Login from "./components/login/login";
 import SignUp from "./components/signup/signup";
 import Profile from "./components/profile/profile";
-import NewProfile from "./components/profile/newprofile";
 import EditProfile from "./components/profile/editprofile";
 import Navigation from "./components/navigation/navigation";
 import BookingList from "./components/bookingList/bookingList";
@@ -29,10 +28,10 @@ export default function App() {
       <Router>
         <div className="App">
           <Switch>
-            <Route path="/login">
+            <Route path="/login" exact>
               <Login setToken={setToken} />
             </Route>
-            <Route path="/signup">
+            <Route path="/signup" exact>
               <SignUp setToken={setToken} />
             </Route>
             <Redirect to="/login" />
@@ -51,32 +50,35 @@ export default function App() {
           <Route path="/" exact>
             <Homepage token={token} />
           </Route>
-          <Route path="/user/profile">
+          <Route path="/user/profile" exact>
             <Profile token={token} />
           </Route>
-          <Route path="/user/editprofile">
+          <Route path="/user/editprofile" exact>
             <EditProfile token={token} />
           </Route>
-          <Route path="/user/bookinglist">
+          <Route path="/user/bookinglist" exact>
             <BookingList token={token} />
           </Route>
-          <Route path="/user/booking/create">
+          <Route path="/user/booking/create" exact>
             <CreateBooking token={token} />
           </Route>
           <Route
             path="/user/booking/cancel/:id"
+            exact
             render={({ location, match }) => (
               <CancelBooking token={token} match={match} />
             )}
           ></Route>
           <Route
             path="/user/booking/edit/:id"
+            exact
             render={({ location, match }) => (
               <EditBooking token={token} match={match} />
             )}
           ></Route>
           <Route
             path="/user/booking/refund/:id"
+            exact
             render={({ location, match }) => (
               <Refund token={token} match={match} />
             )}

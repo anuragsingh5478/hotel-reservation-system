@@ -35,7 +35,7 @@ export default class EditProfile extends React.Component {
       name: this.state.name,
       gender: this.state.gender,
     };
-    var url = "http://localhost:5000/user/edit/";
+    var url = "https://hotel-reservation-system-1.herokuapp.com/user/edit/";
     axios
 
       .put(url, user, { headers: { token: this.props.token } })
@@ -52,8 +52,7 @@ export default class EditProfile extends React.Component {
   }
 
   componentDidMount() {
-    var url = "http://localhost:5000/user/info";
-    console.log(url);
+    var url = "https://hotel-reservation-system-1.herokuapp.com/user/info";
     axios.get(url, { headers: { token: this.props.token } }).then((res) => {
       this.setState({
         name: res.data.userData.name,

@@ -40,7 +40,7 @@ export default class Profile extends react.Component {
     this.state = { user: {} };
   }
   componentDidMount() {
-    var url = "http://localhost:5000/user/info";
+    var url = "https://hotel-reservation-system-1.herokuapp.com/user/info";
     //console.log(url);
     axios.get(url, { headers: { token: this.props.token } }).then((res) => {
       this.setState({ user: res.data.userData });
