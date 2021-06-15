@@ -30,7 +30,9 @@ app.use(express.json());
 app.use(cors());
 
 // routes
-
+app.get("/", function (req, res) {
+  res.send("hello world");
+});
 app.use("/user", userRouter);
 app.use("/booking", bookingRouter);
 app.use("/auth", userAuthRouter);
