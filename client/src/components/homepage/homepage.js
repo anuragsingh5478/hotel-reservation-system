@@ -27,7 +27,7 @@ export default class Homepage extends react.Component {
   }
   componentDidMount() {
     console.log(this.props.token);
-    var url = "http://localhost:5000/user/info";
+    var url = "https://hotel-reservation-system-1.herokuapp.com/user/info";
     //console.log(url);
     axios.get(url, { headers: { token: this.props.token } }).then((res) => {
       this.setState({ user: res.data.userData });

@@ -32,7 +32,8 @@ export default class Refund extends Component {
 
   componentDidMount() {
     var url =
-      "http://localhost:5000/booking/bookinginfo/" + this.props.match.params.id;
+      "https://hotel-reservation-system-1.herokuapp.com/booking/bookinginfo/" +
+      this.props.match.params.id;
     axios
       .get(url, {
         headers: { token: this.props.token },

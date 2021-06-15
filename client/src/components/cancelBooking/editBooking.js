@@ -61,9 +61,13 @@ export default class EditBooking extends Component {
     };
 
     axios
-      .post("http://localhost:5000/booking/edit", updatedBooking, {
-        headers: { token: this.props.token },
-      })
+      .post(
+        "https://hotel-reservation-system-1.herokuapp.com/booking/edit",
+        updatedBooking,
+        {
+          headers: { token: this.props.token },
+        }
+      )
       .then((res) => console.log(res.data));
 
     window.location = "/user/booking/refund/" + this.props.match.params.id;
@@ -71,7 +75,8 @@ export default class EditBooking extends Component {
 
   componentDidMount() {
     var url =
-      "http://localhost:5000/booking/bookinginfo/" + this.props.match.params.id;
+      "https://hotel-reservation-system-1.herokuapp.com/booking/bookinginfo/" +
+      this.props.match.params.id;
     axios
       .get(url, { headers: { token: this.props.token } })
       .then((res) => {

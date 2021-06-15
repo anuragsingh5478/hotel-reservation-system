@@ -63,9 +63,13 @@ export default class CancelBooking extends Component {
     console.log(newBooking);
 
     axios
-      .post("http://localhost:5000/booking/cancel", newBooking, {
-        headers: { token: this.props.token },
-      })
+      .post(
+        "https://hotel-reservation-system-1.herokuapp.com/booking/cancel",
+        newBooking,
+        {
+          headers: { token: this.props.token },
+        }
+      )
       .then((res) => console.log(res.data));
 
     window.location = "/user/booking/refund/" + this.props.match.params.id;
@@ -73,7 +77,9 @@ export default class CancelBooking extends Component {
 
   componentDidMount() {
     let bookingId = this.props.match.params.id;
-    var url = "http://localhost:5000/booking/bookinginfo/" + bookingId;
+    var url =
+      "https://hotel-reservation-system-1.herokuapp.com/booking/bookinginfo/" +
+      bookingId;
     axios
       .get(url, { headers: { token: this.props.token } })
       .then((res) => {

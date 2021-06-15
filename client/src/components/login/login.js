@@ -112,7 +112,7 @@ export default function Login({ setToken }) {
     };
 
     axios
-      .post("http://localhost:5000/auth/login", user)
+      .post("https://hotel-reservation-system-1.herokuapp.com/auth/login", user)
       .then((res) => {
         const msg = res.data.msg;
         if (msg === "success") {

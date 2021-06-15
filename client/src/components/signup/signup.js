@@ -28,7 +28,10 @@ export default function SignUp({ setToken }) {
     };
 
     axios
-      .post("http://localhost:5000/auth/signup", user)
+      .post(
+        "https://hotel-reservation-system-1.herokuapp.com/auth/signup",
+        user
+      )
       .then((res) => {
         const msg = res.data.msg;
         if (msg === "success") {

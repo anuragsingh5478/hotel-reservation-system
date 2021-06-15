@@ -37,7 +37,8 @@ export default class BookingList extends Component {
     this.state = { bookings: [] };
   }
   componentDidMount() {
-    var url = "http://localhost:5000/booking/userBookingsList";
+    var url =
+      "https://hotel-reservation-system-1.herokuapp.com/booking/userBookingsList";
     axios.get(url, { headers: { token: this.props.token } }).then((res) => {
       this.setState({ bookings: res.data.allBookings });
       console.log(res.data);
