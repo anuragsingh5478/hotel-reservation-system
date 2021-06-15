@@ -7,7 +7,7 @@ const cors = require("cors");
 dotenv.config();
 
 //server port
-const port = process.env.PORT | 5000;
+const port = process.env.PORT || 5000;
 
 // Import Routes
 const userRouter = require("./routers/userRouter");
