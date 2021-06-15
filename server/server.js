@@ -16,7 +16,7 @@ const userAuthRouter = require("./routers/userAuthRouter");
 
 //database
 mongoose
-  .connect(process.env.DB_LOCAL, {
+  .connect(process.env.DB_CONNECT, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

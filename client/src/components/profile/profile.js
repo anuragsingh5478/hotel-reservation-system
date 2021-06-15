@@ -11,7 +11,7 @@ import "./style.css";
 import profilepic from "./img/profile.jpg";
 function UserDetails(props) {
   var uname = props.name;
-  var uphone = props.phone;
+  var uemail = props.email;
   var ugender = props.gender;
   return (
     <div className="bg-light text-dark text-center h4 pb-100 profile-card">
@@ -25,7 +25,7 @@ function UserDetails(props) {
         Name:<span className="text-info">{uname}</span>
       </div>
       <div>
-        Phone:<span className="text-info">{uphone}</span>
+        Email:<span className="text-info">{uemail}</span>
       </div>
       <div>
         Gender:<span className="text-info">{ugender}</span>
@@ -51,7 +51,7 @@ export default class Profile extends react.Component {
       <div>
         <UserDetails
           name={this.state.user.name}
-          phone={this.state.user.phone}
+          email={this.state.user.email}
           gender={this.state.user.gender}
         />
       </div>
