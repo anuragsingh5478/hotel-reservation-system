@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 
 export const Item = () => {
   let history = useHistory();
@@ -28,6 +28,7 @@ export default class CancelBooking extends Component {
       checkin_date: new Date(),
       checkout_date: new Date(),
       number_of_rooms: 0,
+      msg: "",
     };
   }
 
@@ -70,9 +71,9 @@ export default class CancelBooking extends Component {
           headers: { token: this.props.token },
         }
       )
-      .then((res) => console.log(res.data));
+      .then((res) => this.setState({ msg: res.data.msg }));
 
-    window.location = "/user/booking/refund/" + this.props.match.params.id;
+    // window.location = "/user/booking/refund/" + this.props.match.params.id;
   }
 
   componentDidMount() {
@@ -139,6 +140,9 @@ export default class CancelBooking extends Component {
             <Item>back</Item>
           </form>
         </div>
+        {this.state.msg === "success" && (
+          <Redirect to={"/user/booking/refund/" + this.props.match.params.id} />
+        )}
       </div>
     );
   }
