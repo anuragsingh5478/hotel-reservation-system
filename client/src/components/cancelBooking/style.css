@@ -1,14 +1,18 @@
-.booking-creation {
+.booking-cancellation {
   width: 100vw;
   margin-top: 10vh;
 }
-.booking-creation-heading {
+.booking-cancellation-heading {
   text-align: center;
   font-size: 2rem;
 }
-.booking-creation-card {
+.booking-cancellation-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   padding: 10px;
   margin: 10px 0px;
+}
+.info-text {
+  font-size: 0.8rem;
+  color: orange;
 }

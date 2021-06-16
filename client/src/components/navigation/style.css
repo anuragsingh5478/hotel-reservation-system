@@ -1,4 +1,71 @@
-.nav {
+.navigation {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 100;
+}
+.menu_button {
+  /* position: absolute; */
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  left: 0px;
+  top: 0px;
+  z-index: 2;
+}
+.sidebar-menu {
+  transform: translateX(-100%);
+  /* background-color: #5eaaa8; */
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  margin-top: 10vh;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 30vw;
+  min-width: fit-content;
+  height: 90vh;
+  transition: transfrom 3s;
+}
+.sidebar-menu > ul {
+  list-style-type: none;
+  padding-left: 0px;
+  /* background-color: black;
+  display: flex;
+  flex-direction: column; */
+}
+.sidebar-menu > ul > li {
+  /* background-color: brown; */
+}
+.sidebar-menu > ul > li > a {
+  display: block;
+  font-size: 2rem;
+  font-weight: bolder;
+  padding: 10px 10px;
+  text-decoration: none;
+  color: white;
+}
+.sidebar-menu > ul > li > a:hover {
+  color: gold;
+}
+
+.logout-button {
+  position: absolute;
+  bottom: 20px;
+  margin-left: 10px;
+}
+@media only screen and (max-width: 600px) {
+  .sidebar-menu {
+    width: 50vw;
+  }
+  .sidebar-menu > ul > li > a {
+    font-size: 1.5rem;
+  }
+}
+/* .nav {
   background-color: aqua;
 }
 
@@ -23,4 +90,4 @@ Link {
   ul {
     flex-direction: row;
   }
-}
+} */

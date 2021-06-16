@@ -52,16 +52,20 @@ export default class Refund extends Component {
   showRefund() {
     return (
       <div>
-        <h1>The refund is {this.state.refund}</h1>
+        <h1>
+          The refund is {/* Rupee Symbol */}
+          <span>&#8377;</span>
+          {Math.floor(this.state.refund)}
+        </h1>
       </div>
     );
   }
 
   render() {
     return (
-      <div className="card container">
-        <div className="card-header h1">Refund</div>
-        <div className="card-body">
+      <div className="booking-cancellation container">
+        <div className="booking-cancellation-heading">Refund</div>
+        <div className="booking-cancellation-card">
           {this.showRefund()}
           <Link to={"/home/" + this.props.match.params.id}>back to Home</Link>
         </div>

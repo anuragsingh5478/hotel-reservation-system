@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   BrowserRouter as Router,
@@ -9,66 +9,48 @@ import {
 } from "react-router-dom";
 import "./style.css";
 import profilepic from "./img/profile.jpg";
-function UserDetails(props) {
-  var uname = props.name;
-  var uemail = props.email;
-  var ugender = props.gender;
+
+import React from "react";
+import { IconButton } from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
+export default function Profile(props) {
+  const [user, setUser] = useState({});
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+
+  useEffect(() => {
+    var url = "https://hotel-reservation-system-1.herokuapp.com/user/info";
+    axios.get(url, { headers: { token: props.token } }).then((res) => {
+      setUser(res.data.userData);
+    });
+  }, []);
   return (
-    <div className="bg-light text-dark text-center h4 pb-100 profile-card">
-      <img
-        src={profilepic}
-        className="img-rounded"
-        width="100px"
-        height="100px"
-      ></img>
-      <div>
-        Name:<span className="text-info">{uname}</span>
-      </div>
-      <div>
-        Email:<span className="text-info">{uemail}</span>
-      </div>
-      <div>
-        Gender:<span className="text-info">{ugender}</span>
+    <div className="profile container">
+      <div className="profile-heading">My Profile</div>
+      <div className="profile-card">
+        <Link to={"/user/editprofile/"}>
+          <IconButton>
+            <EditIcon />
+          </IconButton>
+          Edit Profile
+        </Link>
+        <div className="profile-card-pic">
+          <img src={profilepic} />
+        </div>
+        <div className="profile-card-info-item">
+          Name:{" "}
+          <span className="profile-card-info-item-value">{user.name}</span>
+        </div>
+        <div className="profile-card-info-item">
+          Email:{" "}
+          <span className="profile-card-info-item-value">{user.email}</span>
+        </div>
+        <div className="profile-card-info-item">
+          Gender:{" "}
+          <span className="profile-card-info-item-value">{user.gender}</span>
+        </div>
       </div>
     </div>
   );
-}
-
-export default class Profile extends react.Component {
-  constructor(props) {
-    super(props);
-    this.state = { user: {} };
-  }
-  componentDidMount() {
-    var url = "https://hotel-reservation-system-1.herokuapp.com/user/info";
-    //console.log(url);
-    axios.get(url, { headers: { token: this.props.token } }).then((res) => {
-      this.setState({ user: res.data.userData });
-    });
-  }
-  showUser() {
-    return (
-      <div>
-        <UserDetails
-          name={this.state.user.name}
-          email={this.state.user.email}
-          gender={this.state.user.gender}
-        />
-      </div>
-    );
-  }
-  render() {
-    return (
-      <div className="card text-white profile-container">
-        <div className="card-header ">
-          <div className="font-weight-bold h1 text-dark">My Profile</div>
-          <Link to={"/user/editprofile/"} className="text-info">
-            Edit Profile
-          </Link>
-        </div>
-
-        <div className="card-body">{this.showUser()}</div>
-      </div>
-    );
-  }
 }

@@ -2,18 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useHistory, useParams, Redirect } from "react-router-dom";
-
-export const Item = () => {
-  let history = useHistory();
-  return (
-    <>
-      <button onClick={() => history.goBack()} className="btn btn-warning">
-        Back
-      </button>
-    </>
-  );
-};
+import { Redirect } from "react-router-dom";
+import "./style.css";
 
 export default class CancelBooking extends Component {
   constructor(props) {
@@ -97,9 +87,9 @@ export default class CancelBooking extends Component {
 
   render() {
     return (
-      <div className="card container">
-        <div className="card-header h1">Cancel Booking</div>
-        <div className="card-body">
+      <div className="booking-cancellation container">
+        <div className="booking-cancellation-heading">Cancel Booking</div>
+        <div className="booking-cancellation-card">
           <form onSubmit={this.onSubmit} className="container">
             <div className="form-group">
               <label>Checkin-Date: </label>
@@ -107,6 +97,7 @@ export default class CancelBooking extends Component {
                 <DatePicker
                   selected={this.state.checkin_date}
                   onChange={this.onChangeCheckinDate}
+                  disabled
                 />
               </div>
             </div>
@@ -116,6 +107,7 @@ export default class CancelBooking extends Component {
                 <DatePicker
                   selected={this.state.checkout_date}
                   onChange={this.onChangeCheckoutDate}
+                  disabled
                 />
               </div>
             </div>
@@ -127,6 +119,7 @@ export default class CancelBooking extends Component {
                 className="form-control"
                 value={this.state.number_of_rooms}
                 onChange={this.onChangeRoom}
+                disabled
               />
             </div>
 
@@ -137,7 +130,6 @@ export default class CancelBooking extends Component {
                 className="btn btn-primary"
               />
             </div>
-            <Item>back</Item>
           </form>
         </div>
         {this.state.msg === "success" && (

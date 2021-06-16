@@ -7,16 +7,36 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+import "./bookingList.css";
 
-function BookingDetail(props) {
+function BookingDetailCol(props) {
   return (
-    <tr>
-      <td>{props.booking_date}</td>
-      <td>{props.checkin_date}</td>
-      <td>{props.checkout_date}</td>
-      <td>{props.number_of_rooms}</td>
-      <td>{props.cost}</td>
-      <td>
+    <div className="booking-info-card">
+      <div className="booking-info">
+        Booking Date:{" "}
+        <span className="booking-info-value">{props.booking_date}</span>
+      </div>
+      <div className="booking-info">
+        CheckIn Date:{" "}
+        <span className="booking-info-value">{props.checkin_date}</span>
+      </div>
+      <div className="booking-info">
+        CheckOut Date:{" "}
+        <span className="booking-info-value">{props.checkout_date}</span>
+      </div>
+      <div className="booking-info">
+        Number of Rooms:{" "}
+        <span className="booking-info-value">{props.number_of_rooms}</span>
+      </div>
+      <div className="booking-info">
+        Cost:{" "}
+        <span className="booking-info-value">
+          {/* Rupee Symbol */}
+          <span>&#8377;</span>
+          {props.cost}
+        </span>
+      </div>
+      <div className="booking-info-action-buttons">
         <button className="btn btn-warning" style={{ margin: "0px 5px" }}>
           <Link to={"/user/booking/cancel/" + props.booking_id}>
             Full cancellation
@@ -27,8 +47,8 @@ function BookingDetail(props) {
             Partial cancellation
           </Link>
         </button>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }
 export default class BookingList extends Component {
@@ -47,7 +67,7 @@ export default class BookingList extends Component {
   showBooking() {
     return this.state.bookings.map((booking) => {
       return (
-        <BookingDetail
+        <BookingDetailCol
           booking_id={booking._id}
           booking_date={booking.booking_date.substring(0, 10)}
           checkin_date={booking.checkin_date.substring(0, 10)}
@@ -56,27 +76,19 @@ export default class BookingList extends Component {
           number_of_rooms={booking.number_of_rooms}
           cost={booking.cost}
           key={booking._id}
-        ></BookingDetail>
+        ></BookingDetailCol>
       );
     });
   }
   render() {
     return (
-      <div className="card container">
-        <div className="card-header h1">MY Bookings</div>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Booking Date</th>
-              <th>Checkin-date</th>
-              <th>Checkout-date</th>
-              <th>Rooms</th>
-              <th>Cost</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{this.showBooking()}</tbody>
-        </table>
+      <div className="booking-list container">
+        <div className="booking-list-heading">My Bookings</div>
+        {this.state.bookings.length == 0 ? (
+          <div className="booking-list-empty-text">Booking List Is Empty</div>
+        ) : (
+          this.showBooking()
+        )}
       </div>
     );
   }

@@ -66,9 +66,9 @@ export default class CreateExercise extends Component {
 
   render() {
     return (
-      <div className="my-container">
-        <div className="card-header h1">Create New Booking</div>
-        <div className="card-body container">
+      <div className="booking-creation container">
+        <div className="booking-creation-heading">Create New Booking</div>
+        <div className="booking-creation-card">
           <form onSubmit={this.onSubmit} className="">
             <div className="form-group">
               <label>Checkin-Date: </label>
@@ -81,6 +81,9 @@ export default class CreateExercise extends Component {
             </div>
             <div className="form-group">
               <label>Checkout-Date: </label>
+              <div className="info-text">
+                (Should be greater than CheckIn Date)
+              </div>
               <div>
                 <DatePicker
                   selected={this.state.checkout_date}
@@ -90,6 +93,7 @@ export default class CreateExercise extends Component {
             </div>
             <div className="form-group">
               <label>Number of Rooms: </label>
+              <div className="info-text">(Should be greater than Zero)</div>
               <input
                 type="text"
                 required

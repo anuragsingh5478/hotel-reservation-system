@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Header from "./components/header/Header";
 import Homepage from "./components/homepage/homepage";
 import Login from "./components/login/login";
 import SignUp from "./components/signup/signup";
@@ -11,7 +12,6 @@ import CreateBooking from "./components/createBooking/createBooking";
 import EditBooking from "./components/cancelBooking/editBooking";
 import CancelBooking from "./components/cancelBooking/cancelBooking";
 import Refund from "./components/cancelBooking/refund";
-import Default from "./components/Default";
 
 import useToken from "./useToken";
 import {
@@ -46,6 +46,7 @@ export default function App() {
     <Router>
       <div className="App">
         <Navigation logout={logout} />
+        <Header />
         <Switch>
           <Route path="/" exact>
             <Homepage token={token} />

@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   BrowserRouter as Router,
@@ -7,47 +7,64 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-import Carousel from "./carousal";
+import hotel1 from "./img/hotel1.jpg";
+import hotel2 from "./img/hotel2.jpg";
+import hotel3 from "./img/hotel3.jpg";
 import "./style.css";
 
-function UserDetails(props) {
-  var uname = props.name;
-  var uphone = props.phone;
-  return (
-    <div className="card-header">
-      <h1>Welcome, {uname} !!!</h1>
-    </div>
-  );
-}
+import React from "react";
 
-export default class Homepage extends react.Component {
-  constructor(props) {
-    super(props);
-    this.state = { user: {} };
-  }
-  componentDidMount() {
+export default function Homepage(props) {
+  const [name, setName] = useState("");
+  useEffect(() => {
     var url = "https://hotel-reservation-system-1.herokuapp.com/user/info";
-    //console.log(url);
-    axios.get(url, { headers: { token: this.props.token } }).then((res) => {
-      this.setState({ user: res.data.userData });
+    axios.get(url, { headers: { token: props.token } }).then((res) => {
+      setName(res.data.userData.name);
     });
-  }
-  showUser() {
-    return (
-      <div>
-        <UserDetails name={this.state.user.name} />
+  }, []);
+  return (
+    <div className="homepage ">
+      {/* <div className="homepage-heading">AS Hotels</div> */}
+
+      <div className="container homepage-content">
+        <div className="welcome-back-text">
+          Welcome back, <span className="name">{name}.</span>
+        </div>
+        <div className="tagline-text">The best place to be.</div>
       </div>
-    );
-  }
-  render() {
-    // console.log(this.props.match.params.id);
-    return (
-      <div className="bg-light text-secondary container card ">
-        {this.showUser()}
-        <div className="card-body">
-          <Carousel />
+
+      <div className="homepage-gallery container ">
+        <div className="row ">
+          <div className="col-sm-4">
+            <img src={hotel1} alt="pic" />
+            <div className="gallery-img-text">
+              The finest hotel at the best price.
+            </div>
+          </div>
+          <div className="col-sm-4">
+            <img src={hotel2} alt="pic" />
+            <div className="gallery-img-text">Best in Class facilities.</div>
+          </div>
+          <div className="col-sm-4">
+            <img src={hotel3} alt="pic" />
+            <div className="gallery-img-text">Hotels for all desires.</div>
+          </div>
         </div>
       </div>
-    );
-  }
+
+      <div className="container homepage-info">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Aliquam faucibus
+        purus in massa tempor. Purus semper eget duis at. Amet mattis vulputate
+        enim nulla aliquet porttitor lacus luctus. Nulla aliquet porttitor lacus
+        luctus accumsan tortor posuere. Elit eget gravida cum sociis. Augue
+        lacus viverra vitae congue eu. Non diam phasellus vestibulum lorem. Sed
+        nisi lacus sed viverra tellus in hac. Lacus vestibulum sed arcu non odio
+        euismod lacinia at quis. Iaculis nunc sed augue lacus. Mollis nunc sed
+        id semper risus in hendrerit gravida. Quis ipsum suspendisse ultrices
+        gravida dictum fusce ut placerat orci. Tincidunt dui ut ornare lectus
+        sit amet.
+      </div>
+    </div>
+  );
 }

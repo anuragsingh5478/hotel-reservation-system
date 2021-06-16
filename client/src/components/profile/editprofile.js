@@ -1,12 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default class EditProfile extends React.Component {
   constructor(props) {
@@ -60,8 +54,8 @@ export default class EditProfile extends React.Component {
 
   render() {
     return (
-      <div className="profile-container ">
-        <div className="card-header h1">Edit Profile</div>
+      <div className="profile container ">
+        <div className="profile-heading">Edit Profile</div>
         <div className="card-body">
           <form onSubmit={this.handleSubmit} className="profile-card">
             <div className="form-group">

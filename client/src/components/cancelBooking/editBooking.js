@@ -2,18 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useHistory, Redirect } from "react-router-dom";
-
-export const Item = () => {
-  let history = useHistory();
-  return (
-    <>
-      <button onClick={() => history.goBack()} className="btn btn-warning">
-        Back
-      </button>
-    </>
-  );
-};
+import { Redirect } from "react-router-dom";
 
 export default class EditBooking extends Component {
   constructor(props) {
@@ -94,12 +83,18 @@ export default class EditBooking extends Component {
 
   render() {
     return (
-      <div className="card container">
-        <div className="card-header h1">Edit Booking</div>
-        <div className="card-body">
+      <div className="booking-cancellation container">
+        <div className="booking-cancellation-heading">Edit Booking</div>
+        <div className="booking-cancellation-card">
           <form onSubmit={this.onSubmit} className="container">
             <div className="form-group">
-              <label>Checkin-Date: </label>
+              <label>
+                Checkin-Date:
+                <div className="info-text">
+                  (Should be greater than or equal to:{" "}
+                  {this.state.checkin_date.toString().substring(0, 10)})
+                </div>
+              </label>
               <div>
                 <DatePicker
                   selected={this.state.checkin_date}
@@ -109,6 +104,10 @@ export default class EditBooking extends Component {
             </div>
             <div className="form-group">
               <label>Checkout-Date: </label>
+              <div className="info-text">
+                (Should be Less than or equal to:{" "}
+                {this.state.checkout_date.toString().substring(0, 10)})
+              </div>
               <div>
                 <DatePicker
                   selected={this.state.checkout_date}
@@ -118,6 +117,10 @@ export default class EditBooking extends Component {
             </div>
             <div className="form-group">
               <label>Number of Rooms: </label>
+              <div className="info-text">
+                (Should be less than: {this.state.number_of_rooms} and not equal
+                to zero.)
+              </div>
               <input
                 type="text"
                 required
@@ -134,7 +137,6 @@ export default class EditBooking extends Component {
                 className="btn btn-primary"
               />
             </div>
-            <Item>Back</Item>
           </form>
         </div>
         {this.state.msg === "success" && (

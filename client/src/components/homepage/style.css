@@ -1,1 +1,36 @@
+.homepage {
+  height: 100vh;
+}
 
+.homepage > div > div > div > img {
+  width: 20vw;
+}
+.gallery-img-text {
+  color: gray;
+  text-align: center;
+}
+.homepage-content {
+  background-color: aliceblue;
+  margin: 15vh 0 5vh 0;
+}
+.homepage-info {
+  background-color: lightcyan;
+  margin-top: 5vh;
+}
+.welcome-back-text {
+  font-size: 2rem;
+}
+.welcome-back-text > .name {
+  color: royalblue;
+}
+.tagline-text {
+  font-size: 1.5rem;
+  color: rebeccapurple;
+}
+
+@media only screen and (max-width: 600px) {
+  .homepage > div > div > div > img {
+    width: 90vw;
+    margin: 20px 0px;
+  }
+}
