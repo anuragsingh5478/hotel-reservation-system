@@ -15,7 +15,7 @@
 }
 .homepage-info {
   background-color: lightcyan;
-  margin-top: 5vh;
+  margin: 10px;
 }
 .welcome-back-text {
   font-size: 2rem;
@@ -26,6 +26,18 @@
 .tagline-text {
   font-size: 1.5rem;
   color: rebeccapurple;
+}
+
+.footer {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  background-color: darkblue;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 600px) {

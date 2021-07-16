@@ -23,18 +23,16 @@ export default function Homepage(props) {
     });
   }, []);
   return (
-    <div className="homepage ">
-      {/* <div className="homepage-heading">AS Hotels</div> */}
-
-      <div className="container homepage-content">
+    <div className="homepage container">
+      <div className="homepage-content">
         <div className="welcome-back-text">
           Welcome back, <span className="name">{name}.</span>
         </div>
         <div className="tagline-text">The best place to be.</div>
       </div>
 
-      <div className="homepage-gallery container ">
-        <div className="row ">
+      <div className="homepage-gallery ">
+        <div className="row">
           <div className="col-sm-4">
             <img src={hotel1} alt="pic" />
             <div className="gallery-img-text">
@@ -52,7 +50,7 @@ export default function Homepage(props) {
         </div>
       </div>
 
-      <div className="container homepage-info">
+      <div className="homepage-info">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Aliquam faucibus
         purus in massa tempor. Purus semper eget duis at. Amet mattis vulputate
@@ -64,6 +62,31 @@ export default function Homepage(props) {
         id semper risus in hendrerit gravida. Quis ipsum suspendisse ultrices
         gravida dictum fusce ut placerat orci. Tincidunt dui ut ornare lectus
         sit amet.
+      </div>
+
+      <div className="homepage-info">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Aliquam faucibus
+        purus in massa tempor. Purus semper eget duis at. Amet mattis vulputate
+        enim nulla aliquet porttitor lacus luctus. Nulla aliquet porttitor lacus
+        luctus accumsan tortor posuere. Elit eget gravida cum sociis. Augue
+        lacus viverra vitae congue eu. Non diam phasellus vestibulum lorem. Sed
+        nisi lacus sed viverra tellus in hac. Lacus vestibulum sed arcu non odio
+        euismod lacinia at quis. Iaculis nunc sed augue lacus. Mollis nunc sed
+        id semper risus in hendrerit gravida. Quis ipsum suspendisse ultrices
+        gravida dictum fusce ut placerat orci. Tincidunt dui ut ornare lectus
+        sit amet.
+      </div>
+
+      <div className="footer">
+        <div className="h3">Thankyou For Visiting The Website.</div>
+        <div>
+          Website Devloped By: Anurag Singh(
+          <a href="https://github.com/anuragsingh5478" target="_blank">
+            github
+          </a>
+          )
+        </div>
       </div>
     </div>
   );
