@@ -5,7 +5,9 @@ export default function Header() {
   return (
     <div>
       <div className="homepage-heading">
-        <Link to="/">AS Hotels</Link>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span id="hotel-name">Awesome Hotels</span>
+        </Link>
       </div>
     </div>
   );
