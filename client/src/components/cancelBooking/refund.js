@@ -50,12 +50,13 @@ export default class Refund extends Component {
   }
 
   showRefund() {
+    const refundAmount = (Math.floor(this.state.refund) >= 0)?(Math.floor(this.state.refund)):0;
     return (
       <div>
         <h1>
           The refund is {/* Rupee Symbol */}
           <span>&#8377;</span>
-          {Math.floor(this.state.refund)}
+          {refundAmount}
         </h1>
       </div>
     );
