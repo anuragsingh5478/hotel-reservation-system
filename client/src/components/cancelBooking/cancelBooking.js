@@ -51,7 +51,7 @@ export default class CancelBooking extends Component {
       number_of_rooms: this.state.number_of_rooms,
     };
 
-    console.log(newBooking);
+    // console.log(newBooking);
 
     axios
       .post(
@@ -88,7 +88,7 @@ export default class CancelBooking extends Component {
   render() {
     return (
       <div className="booking-cancellation container">
-        <div className="booking-cancellation-heading">Cancel Booking</div>
+        <div className="main-title">Cancel Booking</div>
         <div className="booking-cancellation-card">
           <form onSubmit={this.onSubmit} className="container">
             <div className="form-group">

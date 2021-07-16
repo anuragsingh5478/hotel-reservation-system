@@ -84,7 +84,7 @@ export default class EditBooking extends Component {
   render() {
     return (
       <div className="booking-cancellation container">
-        <div className="booking-cancellation-heading">Edit Booking</div>
+        <div className="main-title">Edit Booking</div>
         <div className="booking-cancellation-card">
           <form onSubmit={this.onSubmit} className="container">
             <div className="form-group">
