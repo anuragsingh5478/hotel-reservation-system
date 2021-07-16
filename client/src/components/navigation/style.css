@@ -28,17 +28,11 @@
   width: 30vw;
   min-width: fit-content;
   height: 90vh;
-  transition: transfrom 3s;
+  transition: transfrom 1s;
 }
 .sidebar-menu > ul {
   list-style-type: none;
   padding-left: 0px;
-  /* background-color: black;
-  display: flex;
-  flex-direction: column; */
-}
-.sidebar-menu > ul > li {
-  /* background-color: brown; */
 }
 .sidebar-menu > ul > li > a {
   display: block;
@@ -65,29 +59,3 @@
     font-size: 1.5rem;
   }
 }
-/* .nav {
-  background-color: aqua;
-}
-
-ul {
-  min-height: 10vh;
-  width: 100vw;
-  text-decoration: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-li {
-  display: inline;
-}
-
-Link {
-  text-decoration: none;
-}
-
-@media only screen and (max-width: 600px) {
-  ul {
-    flex-direction: row;
-  }
-} */

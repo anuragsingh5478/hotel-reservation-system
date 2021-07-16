@@ -5,16 +5,17 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { IconButton } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Button } from "react-bootstrap";
+
 export default function Navigation(props) {
   const [menuVisible, setmenuVisible] = useState(false);
   useEffect(() => {
     var sidebarMenu = document.getElementById("sidebar-menu");
     if (menuVisible) {
       sidebarMenu.style.transform = "translateX(0%)";
-      sidebarMenu.style.transition = "transform 2s";
+      sidebarMenu.style.transition = "transform 1s";
     } else {
       sidebarMenu.style.transform = "translateX(-100%)";
-      sidebarMenu.style.transition = "transform 2s";
+      sidebarMenu.style.transition = "transform 1s";
     }
   }, [menuVisible]);
   return (
@@ -78,59 +79,3 @@ export default function Navigation(props) {
     </div>
   );
 }
-
-// import React, { Component } from "react";
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from "react-router-dom";
-// import "./style.css";
-// import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-// import { Button } from "react-bootstrap";
-
-// export default class Navigation extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   render() {
-//     return (
-//       <div className="nav  ">
-//         <ul>
-//           <li>
-//             <Link to={"/"} className="text-white">
-//               HOME
-//             </Link>
-//           </li>
-//           <li>
-//             <Link to={"/user/profile/"} className="text-white">
-//               PROFILE
-//             </Link>
-//           </li>
-//           <li>
-//             <Link to={"/user/bookinglist/"} className="text-white">
-//               MY BOOKINGS
-//             </Link>
-//           </li>
-//           <li>
-//             <Link to={"/user/booking/create/"} className="text-white">
-//               NEW BOOKINGS
-//             </Link>
-//           </li>
-//           <li>
-//             <Button
-//               className="btn btn-info btn-lg"
-//               onClick={() => {
-//                 this.props.logout();
-//               }}
-//             >
-//               <ExitToAppIcon /> logout
-//             </Button>
-//           </li>
-//         </ul>
-//       </div>
-//     );
-//   }
-// }
