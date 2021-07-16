@@ -21,8 +21,8 @@
 .booking-info-value {
   color: orange;
 }
-.booking-info-action-buttons > button {
-  margin: 10px 0px;
+.action-btn{
+  margin-top: 5px;
 }
 .booking-info-action-buttons > button > a {
   text-decoration: none;

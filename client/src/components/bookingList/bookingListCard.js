@@ -35,18 +35,25 @@ export default function bookingListCard(props) {
       </div>
       <div className="col-md-4">
         <div className="booking-info-action-buttons">
-          <button className="btn btn-warning w-100">
-            <Link to={"/user/booking/cancel/" + props.booking_id}>
-              Full cancellation
-            </Link>
-          </button>
-          <br />
           
+            <div className="action-btn">
+              <Link to={"/user/booking/cancel/" + props.booking_id}>
+                <button className="btn btn-warning w-100">
+                  Full cancellation
+
+                </button>
+              </Link>
+            </div>
+          <br />
+          <div className="action-btn">
             <Link to={"/user/booking/edit/" + props.booking_id}>
                 <button className="btn btn-warning w-100">
                   Partial cancellation
                 </button>
             </Link>
+
+          </div>
+            
           
         </div>
       </div>
