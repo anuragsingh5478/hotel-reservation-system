@@ -64,7 +64,7 @@ export default class Refund extends Component {
   render() {
     return (
       <div className="booking-cancellation container">
-        <div className="booking-cancellation-heading">Refund</div>
+        <div className="main-title">Refund</div>
         <div className="booking-cancellation-card">
           {this.showRefund()}
           <Link to={"/home/" + this.props.match.params.id}>back to Home</Link>
