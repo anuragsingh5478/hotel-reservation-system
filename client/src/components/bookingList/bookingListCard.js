@@ -41,11 +41,13 @@ export default function bookingListCard(props) {
             </Link>
           </button>
           <br />
-          <button className="btn btn-warning w-100">
+          
             <Link to={"/user/booking/edit/" + props.booking_id}>
-              Partial cancellation
+                <button className="btn btn-warning w-100">
+                  Partial cancellation
+                </button>
             </Link>
-          </button>
+          
         </div>
       </div>
     </div>

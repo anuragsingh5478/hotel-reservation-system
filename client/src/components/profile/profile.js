@@ -27,7 +27,7 @@ export default function Profile(props) {
   }, []);
   return (
     <div className="profile container">
-      <div className="profile-heading">My Profile</div>
+      <div className="main-title">My Profile</div>
       <div className="profile-card">
         <Link to={"/user/editprofile/"}>
           <IconButton>

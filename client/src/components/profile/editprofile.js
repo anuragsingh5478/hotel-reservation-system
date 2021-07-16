@@ -55,8 +55,8 @@ export default class EditProfile extends React.Component {
   render() {
     return (
       <div className="profile container ">
-        <div className="profile-heading">Edit Profile</div>
-        <div className="card-body">
+        <div className="main-title">Edit Profile</div>
+        <div className="card-body row">
           <form onSubmit={this.handleSubmit} className="profile-card">
             <div className="form-group">
               <label>
