@@ -1,7 +1,15 @@
-# hotel-reservation-system
+# Hotel Reservation System
+
+Hotel Reservation System is a full-stack web application using which a user could
+book a room in a hotel, cancel or partially cancel his room booking,
+view/ update his profile on the website etc.
+
+## Technologies Used: React, Node.js, Express, MongoDB.
 
 ## link: https://hotel-reservation-system.netlify.app/
 
-### Hotel Reservation System is a Web Application using which user can book a room reservation, cancel and update the booking along with features such as login / signup and setting / updating user's profile etc.
+## Screenshots
 
-## Technologies Used: React, Node.js, Express, MongoDB.
+### Login Page
+
+![App Screenshot](screenshots/login-page.jpg)
