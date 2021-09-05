@@ -13,3 +13,21 @@ view/ update his profile on the website etc.
 ### Login Page
 
 ![App Screenshot](screenshots/login-page.jpg)
+
+### Homepage
+
+![App Screenshot](screenshots/homepage.jpg)
+
+![App Screenshot](screenshots/homepage-mobile.jpg)
+
+### Profile
+
+![App Screenshot](screenshots/profile.jpg)
+
+### Booking List
+
+![App Screenshot](screenshots/booking-list.jpg)
+
+### New Booking
+
+![App Screenshot](screenshots/new-booking.jpg)
