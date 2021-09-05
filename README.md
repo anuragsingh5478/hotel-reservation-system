@@ -18,8 +18,6 @@ view/ update his profile on the website etc.
 
 ![App Screenshot](screenshots/homepage.jpg)
 
-![App Screenshot](screenshots/homepage-mobile.jpg)
-
 ### Profile
 
 ![App Screenshot](screenshots/profile.jpg)
