@@ -9,12 +9,20 @@ exports.signUp = async function (req, res) {
   if (error) return res.send({ msg: error.details[0].message });
 
   // Checking if User's Email Already in the Database
-  const emailExist = await UserAuth.findOne({ email: req.body.email });
+  const emailExist = await UserAuth.findOne({ email: req.body.email }).catch(
+    (err) => {
+      console.log(err);
+    }
+  );
   if (emailExist) return res.send({ msg: "email already in use" });
 
   //Hash the password
   const saltRound = 10;
-  const hashedPassword = await bcrypt.hash(req.body.password, saltRound);
+  const hashedPassword = await bcrypt
+    .hash(req.body.password, saltRound)
+    .catch((err) => {
+      console.log(err);
+    });
 
   // Creating new User
   const user = new UserAuth({
@@ -25,7 +33,9 @@ exports.signUp = async function (req, res) {
   });
 
   try {
-    const savedUser = await user.save();
+    const savedUser = await user.save().catch((err) => {
+      console.log(err);
+    });
     // Create and Assign a Token
     const token = jwt.sign({ _id: savedUser._id }, process.env.TOKEN_SECRET);
     res.send({ msg: "success", token: token });
@@ -40,7 +50,11 @@ exports.login = async function (req, res) {
   if (error) return res.send({ msg: error.details[0].message });
 
   // Checking if User's Email Already in the Database
-  const user = await UserAuth.findOne({ email: req.body.email });
+  const user = await UserAuth.findOne({ email: req.body.email }).catch(
+    (err) => {
+      console.log(err);
+    }
+  );
   if (!user) return res.send({ msg: "email does not exist" });
 
   // Check if Password is Correct
